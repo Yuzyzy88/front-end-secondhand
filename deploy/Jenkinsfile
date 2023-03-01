@@ -8,18 +8,19 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 checkout([$class: 'GitSCM',
-                branches: [[name: '*/main']],
+                branches: [[name: '*/master']],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [[$class: 'CleanCheckout']],
                 submoduleCfg: [],
-                userRemoteConfigs: [[credentialsId: 'gitlab-login',
-                url: 'https://gitlab.com/Yuzyzy88/FrontEnd-SecondHand-FinalProject.git']]])
+                userRemoteConfigs: [[credentialsId: 'github-login',
+                url: 'https://github.com/Yuzyzy88/front-end-secondhand.git']]])
             }
         }
         
         stage('Npm Install') {
             steps {
                 sh"""
+                export PATH=/opt/.nvm/versions/node/v18.9.0/bin:$PATH
                 npm install
                 """
             }
