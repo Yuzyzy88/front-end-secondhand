@@ -1,0 +1,65 @@
+.profile{
+    width: 100vw;
+    .barnav{
+        .container{
+            .navtoggler{
+                display: none;
+            }
+            .cari{
+                display: none;
+            }
+            .lengkapi{
+                display: flex;
+            }
+            .card-icon{
+                display: none;
+            }
+            .collapse{
+                .collapse1{
+                    .collapse2{
+                        display: none;
+                    }
+                }
+            }
+            .grupform{
+                .search{
+                    display: none;
+                }
+            }    
+        }
+    }
+}
+
+@media (max-width: 426px){
+    .profile{
+        .barnav{
+            .container{
+                display: none;
+                .navtoggler{
+                    display: none;
+                }
+                .cari{
+                    display: none;
+                }
+                .lengkapi{
+                    display: flex;
+                }
+                .card-icon{
+                    display: none;
+                }
+                .collapse{
+                    .collapse1{
+                        .collapse2{
+                            display: none;
+                        }
+                    }
+                }
+                .grupform{
+                    .search{
+                        display: none;
+                    }
+                }    
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+.sell{
+    .barnav{
+        .container{
+            .cari{
+                display: none;
+            }
+            .tambahkan{
+                display: flex;
+            }
+            .navtoggler{
+                display: none;
+            }
+            .card-icon{
+                display: none;
+            }
+            .collapse{
+                .collapse1{
+                    .collapse2{
+                        display: none;
+                    }
+                }
+            }
+            .grupform{
+                .search{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 426px){
+    .sell{
+        .barnav{
+            .container{
+                display: none;
+                .cari{
+                    display: none;
+                }
+                .tambahkan{
+                    display: flex;
+                }
+                .navtoggler{
+                    display: none;
+                }
+                .card-icon{
+                    display: none;
+                }
+                .collapse{
+                    .collapse1{
+                        .collapse2{
+                            display: none;
+                        }
+                    }
+                }
+                .grupform{
+                    .search{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+}

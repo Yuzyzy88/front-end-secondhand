@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    parameters {
+        password(name: 'dockerUser', defaultValue: 'sulistiowatiayu', description: 'Image Registry address')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                checkout([$class: 'GitSCM',
+                branches: [[name: '*/main']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CleanCheckout']],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: 'gitlab-login',
+                url: 'https://gitlab.com/Yuzyzy88/FrontEnd-SecondHand-FinalProject.git']]])
+            }
+        }
+        
+        stage('Npm Install') {
+            steps {
+                sh"""
+                npm install
+                """
+            }
+        }
+
+        stage('Create Image') {
+            steps {
+                sh """
+                docker image rm frontendsecondhand:v${BUILD_NUMBER} || echo "No existing image found"
+                docker build --no-cache -t sulistiowatiayu/frontendsecondhand:v${BUILD_NUMBER} . -f deploy/Dockerfile
+                """
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh '''
+                docker login --username=$dockerUser --password="$dockerPassword" https://index.docker.io/v1/
+                docker push sulistiowatiayu/frontendsecondhand:v${BUILD_NUMBER}
+                '''
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh """
+                (docker stop frontendsecondhand && docker rm frontendsecondhand) || echo "No existing container running"
+                docker run -p 80:3000 -d --name frontendsecondhand sulistiowatiayu/frontendsecondhand:v${BUILD_NUMBER}
+                """
+            }
+        }
+    }
+}
