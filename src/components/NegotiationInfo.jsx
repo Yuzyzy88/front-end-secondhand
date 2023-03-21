@@ -219,7 +219,7 @@ const NegotiationInfo = () => {
                           </div>
                           <div className="col auto text-end">
                             <p className="text-muted m-0">
-                              <small>26 February</small>
+                              <small>21 March</small>
                             </p>
                           </div>
                         </div>
